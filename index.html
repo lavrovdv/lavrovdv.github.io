@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!--Import Google Icon Font-->
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+    <link type="text/css" rel="stylesheet" href="css/custom.css"  media="screen,projection"/>
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+</head>
+
+<body>
+<div id="app">
+    <nav>
+        <div class="nav-wrapper">
+            <a href="#" data-activates="slide-out" class="button-collapse menu-button"><i class="material-icons">menu</i></a>
+            <a href="#" class="brand-logo center">Price calculator</a>
+            <ul id="nav-mobile" class="left hide-on-med-and-down">
+                <li><a href="#" data-activates="slide-out" class="menu-button"><i class="material-icons">menu</i></a></li>
+            </ul>
+        </div>
+    </nav>
+    <ul id="slide-out" class="side-nav">
+        <li><div class="userView">
+            <div class="background">
+                <img src="images/food.png">
+            </div>
+            <a href="#!user"><img class="circle" src="images/avatar.svg"></a>
+            <a href="#!name"><span class="white-tex t name">John Doe</span></a>
+            <a href="#!email"><span class="white-text email">jdandturk@gmail.com</span></a>
+        </div></li>
+        <li><a href="#!" class="blue-text" v-on:click.stop="addNewList">+ Add list</a></li>
+        <li><div class="divider"></div></li>
+        <li>
+        <template v-for="(list, index) in lists">
+            <li>
+                <a class="waves-effect" href="#!" v-on:click="selectList(index)">
+                    {{list.name}} {{index + 1}}
+                    <span class="secondary-content" v-on:click.stop="removeList(index)"><i class="material-icons right-icon">close</i></span>
+                </a>
+            </li>
+        </template>
+    </ul>
+
+    <ul class="collapsible" data-collapsible="accordion">
+        <li v-for="(item, index) in currentElements">
+            <div class="collapsible-header" v-bind:class="{ complete: item.complete }">
+                <i class="material-icons" v-on:click.stop="changeElementState(index)">visibility</i>
+                {{item.product_name}}
+                <a href="mobile.html" class="right-align"></a>
+                <span class="secondary-content" v-on:click="removeElement(index)"><i class="material-icons right-icon">close</i></span>
+            </div>
+            <div class="collapsible-body">
+                <div class="row">
+                    <form action="#" v-on:submit.prevent="addHistory(index, $event)">
+                        <div class="input-field col s2" >
+                            <input type="number" required class="validate price">
+                            <label>Price</label>
+                        </div>
+                        <div class="input-field col s2">
+                            <input type="number" required class="validate count">
+                            <label>Count</label>
+                        </div>
+                        <div class="input-field col s5">
+                            <input type="text" class="validate comment">
+                            <label>Comment</label>
+                        </div>
+                        <div class="input-field col s2">
+                            <button name="subject" type="submit" class="waves-effect waves-light btn">Ок</button>
+                        </div>
+                    </form>
+                    <table class="centered">
+                        <tbody>
+                        <tr v-for="event in item.history" >
+                            <td>{{event.price / event.count}} р</td>
+                            <td>{{event.comment}}</td>
+                            <td>{{event.created_at}}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </li>
+    </ul>
+
+    <div class="fixed-action-btn" style="bottom: 24px; right: 24px;">
+        <a class="btn-floating btn-large red" href="#modal1">
+            <i class="material-icons">add</i>
+        </a>
+    </div>
+    <!-- Modal Structure -->
+    <div id="modal1" class="modal bottom-sheet">
+        <div class="modal-content">
+            <div class="row">
+                <form class="col s12">
+                    <div class="input-field">
+                        <input id="product_name" type="text" v-on:keyup.enter="addElement">
+                        <label for="product_name">Product Name</label>
+                    </div>
+              </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/lodash/4.17.2/lodash.min.js"></script>
+<script type="text/javascript" src="js/materialize.min.js"></script>
+<script type="text/javascript" src="js/vue.js"></script>
+<script type="text/javascript" src="js/custom.js"></script>
+<script type="text/javascript" src="js/app.js"></script>
+
+</body>
+</html>

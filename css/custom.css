@@ -1,0 +1,9 @@
+.complete{
+    color: lightgray;
+    text-decoration: line-through;
+}
+
+.right-icon{
+    margin-right: 0 !important;
+    margin-left: 1rem !important;
+}
