@@ -95,7 +95,7 @@
             <div class="row">
                 <form class="col s12">
                     <div class="input-field">
-                        <input id="product_name" type="text" v-on:keyup.enter="addElement">
+                        <input id="product_name" type="text" v-on:keyup.enter.stop="addElement">
                         <label for="product_name">Product Name</label>
                     </div>
               </form>

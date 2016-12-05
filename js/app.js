@@ -39,14 +39,6 @@ function init_data(){
 var app = new Vue({
     el: '#app',
     data: init_data(),
-    watch:{
-        '$data': {
-            handler:function() {
-                console.log('changed')
-            },
-            deep:true
-        }
-    },
     methods:{
         addNewList: function(event){
             this.lists.push(_.clone(new_list))
