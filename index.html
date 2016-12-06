@@ -73,7 +73,7 @@
                     <table class="centered">
                         <tbody>
                         <tr v-for="event in item.history" >
-                            <td>{{event.price / event.count}} р</td>
+                            <td>{{(event.price / event.count).toFixed(2)}} р</td>
                             <td>{{event.comment}}</td>
                             <td>{{event.created_at}}</td>
                         </tr>
