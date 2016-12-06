@@ -47,7 +47,9 @@ var app = new Vue({
             this.current_list_index = index;
         },
         removeList: function(index){
-            this.lists.splice(index, 1)
+            this.lists.splice(index, 1);
+            var current_list_index = (index == 0) ? 0 : index - 1;
+            this.current_list_index = current_list_index;
         },
         removeElement: function(element_index){
             this.lists[this.current_list_index].elements.splice(element_index, 1)
@@ -83,7 +85,8 @@ var app = new Vue({
 
     computed: {
         currentElements: function () {
-            return this.lists[this.current_list_index].elements
+            var current_list = this.lists[this.current_list_index];
+            return current_list ? current_list.elements : [];
         }
     }
 });
