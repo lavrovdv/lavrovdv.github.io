@@ -32,8 +32,12 @@ var default_data = {
     ]
 };
 
+function deep_clone(obj){
+    return JSON.parse(JSON.stringify(obj))
+}
+
 function init_data(){
-    return JSON.parse(localStorage.getItem('page_calc_storage')) || _.clone(default_data);
+    return JSON.parse(localStorage.getItem('page_calc_storage')) || deep_clone(default_data);
 }
 
 var app = new Vue({
@@ -41,7 +45,7 @@ var app = new Vue({
     data: init_data(),
     methods:{
         addNewList: function(event){
-            this.lists.push(_.clone(new_list))
+            this.lists.push(deep_clone(new_list))
         },
         selectList: function(index){
             this.current_list_index = index;
@@ -55,7 +59,7 @@ var app = new Vue({
         addElement: function(event){
             var input = $(event.currentTarget);
             var modal = input.closest('#modal1');
-            var element = _.clone(new_element);
+            var element = deep_clone(new_element);
             element.product_name = input.val();
             input.val('');
             modal.modal('close');
@@ -67,7 +71,7 @@ var app = new Vue({
             element.complete = !element.complete;
         },
         addHistory: function(index, event){
-            var history = _.clone(new_history);
+            var history = deep_clone(new_history);
             var now = new Date();
             var form = $(event.currentTarget).closest(".collapsible-body");
 
