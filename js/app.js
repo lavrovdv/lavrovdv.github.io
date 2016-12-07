@@ -34,7 +34,13 @@ var default_data = {
 };
 
 function init_data(){
-    var loaded =  JSON.parse(localStorage.getItem('page_calc_storage')) || _.cloneDeep(default_data);
+    var loaded;
+    if(location.search == '?i=remove_all'){
+        loaded =  _.cloneDeep(default_data)
+    }else{
+        loaded = JSON.parse(localStorage.getItem('page_calc_storage')) || _.cloneDeep(default_data);
+    }
+
     migrate_unit_base(loaded);
     return loaded;
 }
