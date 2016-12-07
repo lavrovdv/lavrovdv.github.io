@@ -73,10 +73,10 @@
                     </form>
                     <table class="price-history">
                         <tbody>
-                        <tr v-for="event in item.history" >
-                            <td>{{(event.price * item.unit_base / event.count).toFixed(2)}} ₽</td>
-                            <td>{{event.comment}}</td>
-                            <td>{{event.created_at}}</td>
+                        <tr v-for="event in reverseHistory(item)" >
+                            <td>{{ (event.price * item.unit_base / event.count).toFixed(2) }} ₽</td>
+                            <td>{{ event.comment }}</td>
+                            <td>{{ dateFormatDecorator(event.created_at) }}</td>
                         </tr>
                         </tbody>
                     </table>
@@ -106,6 +106,8 @@
 </div>
 <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/lodash/4.17.2/lodash.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/moment.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/locale/ru.js"></script>
 <script type="text/javascript" src="js/materialize.min.js"></script>
 <script type="text/javascript" src="js/vue.js"></script>
 <script type="text/javascript" src="js/custom.js"></script>

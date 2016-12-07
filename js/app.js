@@ -35,7 +35,7 @@ var default_data = {
 
 function init_data(){
     var loaded =  JSON.parse(localStorage.getItem('page_calc_storage')) || _.cloneDeep(default_data);
-    migrate_unit_base(loaded)
+    migrate_unit_base(loaded);
     return loaded;
 }
 
@@ -89,7 +89,7 @@ var app = new Vue({
             history.price = parseFloat(form.find('input.price').val());
             history.count = parseFloat(form.find('input.count').val());
             history.comment = form.find('input.comment').val();
-            history.created_at = now.getDate() + '.' + (now.getMonth() + 1) + '.' + now.getFullYear();
+            history.created_at = now;
             form.find('input').val('');
 
             this.lists[this.current_list_index].elements[index].history.push(history)
@@ -101,6 +101,13 @@ var app = new Vue({
                 unit = 1
             }
             this.lists[this.current_list_index].elements[index].unit_base = unit
+        },
+        dateFormatDecorator: function (date){
+            var moment_obj = (date.length == 10) ? moment(date, 'DD.MM.YYYY') : moment(date);
+            return moment_obj.fromNow();
+        },
+        reverseHistory: function (item){
+            return _.reverse(item.history)
         }
     },
 
