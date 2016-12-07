@@ -105,6 +105,10 @@ var app = new Vue({
         dateFormatDecorator: function (date){
             var moment_obj = (date.length == 10) ? moment(date, 'DD.MM.YYYY') : moment(date);
             return moment_obj.fromNow();
+        },
+        removeAll: function(){
+            this.current_list_index = 0;
+            this.lists.splice(0, Number.MAX_VALUE);
         }
     },
 
