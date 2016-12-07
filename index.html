@@ -73,7 +73,7 @@
                     </form>
                     <table class="price-history">
                         <tbody>
-                        <tr v-for="event in reverseHistory(item)" >
+                        <tr v-for="event in item.history" >
                             <td>{{ (event.price * item.unit_base / event.count).toFixed(2) }} ₽</td>
                             <td>{{ event.comment }}</td>
                             <td>{{ dateFormatDecorator(event.created_at) }}</td>

@@ -92,7 +92,7 @@ var app = new Vue({
             history.created_at = now;
             form.find('input').val('');
 
-            this.lists[this.current_list_index].elements[index].history.push(history)
+            this.lists[this.current_list_index].elements[index].history.unshift(history)
         },
         recalcHistoryPrice: function(index, event) {
             var form = $(event.currentTarget).closest(".collapsible-body");
@@ -105,9 +105,6 @@ var app = new Vue({
         dateFormatDecorator: function (date){
             var moment_obj = (date.length == 10) ? moment(date, 'DD.MM.YYYY') : moment(date);
             return moment_obj.fromNow();
-        },
-        reverseHistory: function (item){
-            return _.reverse(item.history)
         }
     },
 
