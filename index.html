@@ -59,7 +59,7 @@
                             <input type="number" required class="validate price">
                             <label>Price</label>
                         </div>
-                        <div class="input-field col s2">
+                        <div class="input-field col s2" v-on:keyup="recalcHistoryPrice(index, $event)">
                             <input type="number" required class="validate count">
                             <label>Unit</label>
                         </div>
@@ -71,10 +71,10 @@
                             <button name="subject" type="submit" class="waves-effect waves-light btn">Ок</button>
                         </div>
                     </form>
-                    <table class="centered">
+                    <table class="price-history">
                         <tbody>
                         <tr v-for="event in item.history" >
-                            <td>{{(event.price / event.count).toFixed(2)}} ₽</td>
+                            <td>{{(event.price * item.unit_base / event.count).toFixed(2)}} ₽</td>
                             <td>{{event.comment}}</td>
                             <td>{{event.created_at}}</td>
                         </tr>

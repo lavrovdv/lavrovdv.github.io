@@ -11,6 +11,7 @@ var new_element = {
     product_name: '',
     complete: false,
     count: '',
+    unit_base: 1,
     history: []
 };
 
@@ -33,7 +34,19 @@ var default_data = {
 };
 
 function init_data(){
-    return JSON.parse(localStorage.getItem('page_calc_storage')) || _.cloneDeep(default_data);
+    var loaded =  JSON.parse(localStorage.getItem('page_calc_storage')) || _.cloneDeep(default_data);
+    migrate_unit_base(loaded)
+    return loaded;
+}
+
+function migrate_unit_base(data){
+    _.forEach(data.lists, function(list) {
+        _.forEach(list.elements, function(element) {
+            if (_.isUndefined(element.unit_base)) {
+                element.unit_base = 1
+            }
+        })
+    })
 }
 
 var app = new Vue({
@@ -80,6 +93,14 @@ var app = new Vue({
             form.find('input').val('');
 
             this.lists[this.current_list_index].elements[index].history.push(history)
+        },
+        recalcHistoryPrice: function(index, event) {
+            var form = $(event.currentTarget).closest(".collapsible-body");
+            var unit = history.count = parseFloat(form.find('input.count').val());
+            if (_.isNaN(unit)) {
+                unit = 1
+            }
+            this.lists[this.current_list_index].elements[index].unit_base = unit
         }
     },
 
