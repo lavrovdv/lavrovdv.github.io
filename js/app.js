@@ -1,6 +1,23 @@
 // remove all
 // localStorage.setItem('page_calc_storage', null)
 
+moment.updateLocale('ru', {
+    relativeTime : {
+        future : '%s',
+        past : '%s',
+        s : 'сейчас',
+        m : '1 мин',
+        mm : '%d мин',
+        h : '1 ч',
+        hh : '%d ч',
+        d : '1 д',
+        dd : '%d д',
+        M : '1 мес',
+        MM : '%d мес',
+        y : '1 г',
+        yy : '%d г'
+    }
+});
 
 var new_list = {
     name: 'List',
