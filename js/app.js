@@ -109,7 +109,7 @@ var app = new Vue({
             this.lists[this.current_list_index].elements[index].unit_base = unit
         },
         dateFormatDecorator: function (date){
-            var moment_obj = (date.length == 10) ? moment(date, 'DD.MM.YYYY') : moment(date);
+            var moment_obj = (date.length == 10 || date.length == 9) ? moment(date, 'DD.MM.YYYY') : moment(date);
             return moment_obj.fromNow();
         },
         removeAll: function(){
