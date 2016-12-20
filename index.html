@@ -39,7 +39,6 @@
         </div></li>
         <li><a href="#!" class="blue-text" v-on:click.stop="addNewList">+ Add list</a></li>
         <li><div class="divider"></div></li>
-        <li>
         <template v-for="(list, index) in lists">
             <li>
                 <a class="waves-effect" href="#!" v-on:click="selectList(index)">
